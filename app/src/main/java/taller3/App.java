@@ -24,9 +24,9 @@ public class App {
  public static String Escribir_asc(int n1, int n2, int n3){
       try {
          if (n1 == n2 || n1 == n3 || n2 == n3) return "Error: La función no considera números iguales";
-//         int[] lista_numeros = {n1, n2, n3};
-//         Arrays.sort(lista_numeros);
-//         return String.format("%s - %s - %s", lista_numeros[2], lista_numeros[1], lista_numeros[0]);
+        int[] lista_numeros = {n1, n2, n3};
+         Arrays.sort(lista_numeros);
+         return String.format("%s - %s - %s", lista_numeros[2], lista_numeros[1], lista_numeros[0]);
          
  if (n1 > n2 && n1 > n3) {
             if (n2 > n3) return String.format("%s - %s - %s", n1, n2, n3);
@@ -57,7 +57,7 @@ public class App {
     * no está en el rango devuelve 0. Y si hay un error inesperado, devuelve -1.
     * 
     */
-public static byte Obtener_cifras(int numero){
+ public static byte Obtener_cifras(int numero){
       try {
          final byte MIN = 0;
          final int MAX = 50_000;
@@ -85,7 +85,7 @@ public static byte Obtener_cifras(int numero){
     * 
     */
 
-public static String Clasificar_char(char caracter){
+ public static String Clasificar_char(char caracter){
       try {
          final short[] rango_minusculas = {97, 122};
          final short[] rango_mayusculas = {65, 90};
@@ -103,6 +103,7 @@ public static String Clasificar_char(char caracter){
          return "Ocurrió un error inesperado";
       }
    }
+
 
    /*
     * 
@@ -136,7 +137,7 @@ public static String Clasificar_char(char caracter){
          return "Ocurrió un error inesperado";
       }
    }
-
+   
    /*
     * 5. En la siguiente tabla se encuentra la información de las habitaciones de
     * una finca hotel:
@@ -161,7 +162,6 @@ public static String Clasificar_char(char caracter){
     * Si hay un error inesperado, deberá mostrar el mensaje:
     * "Ocurrió un error inesperado".
     */
-
 public static String Consultar_hab(byte num_camas, String ventilador){
       try {
          final byte CERO = 0;
@@ -216,7 +216,7 @@ public static String Consultar_hab(byte num_camas, String ventilador){
 
 
 
- public static String Obtener_obs(boolean plato1, boolean plato2, boolean plato3){
+  public static String Obtener_obs(boolean plato1, boolean plato2, boolean plato3){
       try {
 
          if (!plato1 && !plato2 && !plato3) return "PLATOS NO VÁLIDOS";
@@ -272,4 +272,5 @@ public static String Consultar_hab(byte num_camas, String ventilador){
          return "Ocurrió un error inesperado";
       }
    }
+
 } 
