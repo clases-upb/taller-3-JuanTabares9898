@@ -21,9 +21,34 @@ public class App {
     * hay un error inesperado, deberá mostrar
     * el mensaje: "Ocurrió un error inesperado".
     */
+ public static String Escribir_asc(int n1, int n2, int n3){
+      try {
+         if (n1 == n2 || n1 == n3 || n2 == n3) return "Error: La función no considera números iguales";
+        int[] lista_numeros = {n1, n2, n3};
+         Arrays.sort(lista_numeros);
+         return String.format("%s - %s - %s", lista_numeros[2], lista_numeros[1], lista_numeros[0]);
+         
+ if (n1 > n2 && n1 > n3) {
+            if (n2 > n3) return String.format("%s - %s - %s", n1, n2, n3);
+            else return String.format("%s - %s - %s", n1, n3, n2);
+         }
+
+         else if (n2 > n1 && n2 > n3) {
+            if (n3 > n1) return String.format("%s - %s - %s", n2, n3, n1);
+            else return String.format("%s - %s - %s", n2, n1, n3);
+         }
+
+         else{
+            if (n1 > n2) return String.format("%s - %s - %s", n3, n1, n2);
+            else return String.format("%s - %s - %s", n3, n2, n1);
+         }
+
+      } catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
 
 
-
+   }
    /*
     * 2. Construya un algoritmo e implemente la función en Java Obtener_cifras que
     * recibe un número entre 0 y 50.000
@@ -32,7 +57,18 @@ public class App {
     * no está en el rango devuelve 0. Y si hay un error inesperado, devuelve -1.
     * 
     */
+ public static byte Obtener_cifras(int numero){
+      try {
+         final byte MIN = 0;
+         final int MAX = 50_000;
+         if (numero < MIN || numero > MAX) return 0;
 
+         String numero_cadena = Integer.toString(numero);
+         return (byte) numero_cadena.length();
+      } catch (Exception e) {
+         return -1;
+      }
+   }
 
 
    /*
@@ -49,6 +85,24 @@ public class App {
     * 
     */
 
+ public static String Clasificar_char(char caracter){
+      try {
+         final short[] rango_minusculas = {97, 122};
+         final short[] rango_mayusculas = {65, 90};
+         final short[] rango_n = {48, 57};
+
+         short ascii = (short) caracter;
+
+         if (ascii >= rango_minusculas[0] && ascii <= rango_minusculas[1] ||
+                 ascii >= rango_mayusculas[0] && ascii <= rango_mayusculas[1]) return "ES LETRA";
+
+         else if (ascii >= rango_n[0] && ascii <= rango_n[1]) return "ES NUMERO";
+
+         else return "ESPECIAL";
+      } catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+   }
 
 
    /*
@@ -70,8 +124,20 @@ public class App {
     * 
     */
 
-   
+    public static String Hallar_division_exacta(int n1, int n2){
+      try {
+         final byte CERO = 0;
+         if (n1 <= 0 || n2 <= 0) return "NO SE ADMITE CERO O NEGATIVOS";
 
+         float residuo = n1%n2;
+         if (residuo == CERO) return "DIVISION EXACTA";
+         else return "DIVISION NO EXACTA";
+
+      } catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+   }
+   
    /*
     * 5. En la siguiente tabla se encuentra la información de las habitaciones de
     * una finca hotel:
@@ -96,8 +162,42 @@ public class App {
     * Si hay un error inesperado, deberá mostrar el mensaje:
     * "Ocurrió un error inesperado".
     */
+public static String Consultar_hab(byte num_camas, String ventilador){
+      try {
+         final byte CERO = 0;
+         final byte UNO = 1;
+         final byte TRES = 3;
+         final String AA = "AA";
+         final String VE = "VE";
 
+         if (num_camas < UNO || num_camas > TRES || (!ventilador.equals(AA) && !ventilador.equals(VE))) return "DATOS NO VÁLIDOS";
 
+         final String[] habitacion101 = {"101", "2", "Primera", "AA"};
+         final String[] habitacion102 = {"102", "1", "Primera", "VE"};
+         final String[] habitacion201 = {"201", "3", "Segunda", "AA"};
+         final String[] habitacion202 = {"202", "2", "Segunda", "VE"};
+         final String[] habitacion301 = {"301", "2", "Tercera", "AA"};
+
+         List<String[]> hab = new ArrayList<>();
+         hab.add(habitacion101);
+         hab.add(habitacion102);
+         hab.add(habitacion201);
+         hab.add(habitacion202);
+         hab.add(habitacion301);
+
+         String coincidencias = "";
+         for (String[] habitacion : hab){
+            if ( num_camas == Byte.parseByte(habitacion[1]) && ventilador.equals(habitacion[3])){
+               if (coincidencias.length() > CERO) coincidencias += "|";
+               coincidencias += habitacion[0];
+            }
+         }
+
+         return coincidencias;
+      } catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+   }
    
    /*
     * 
@@ -116,7 +216,20 @@ public class App {
 
 
 
+  public static String Obtener_obs(boolean plato1, boolean plato2, boolean plato3){
+      try {
 
+         if (!plato1 && !plato2 && !plato3) return "PLATOS NO VÁLIDOS";
+         else if (plato1 && plato2 && plato3) return "BEBIDA Y POSTRE";
+         else if (plato1 && plato2) return "BEBIDA";
+         else if (plato1) return "POSTRE";
+         else return "NINGUNO";
+
+
+      } catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+   }
 
 
 
@@ -141,4 +254,23 @@ public class App {
     * "Ocurrió un error inesperado".
     * 
     */
+ public static String Conocer_invitacion(String color){
+      try {
+         Map<String, String> invitaciones = new HashMap<>();
+         invitaciones.put("verde", "Invita a las cervezas");
+         invitaciones.put("azul", "Invita a la pizza");
+         invitaciones.put("rojo", "Invita al postre");
+         invitaciones.put("amarillo", "Paga el parqueadero de todos");
+         invitaciones.put("blanco", "Vaya y disfrute");
+         invitaciones.put("negro", "Vaya y disfrute");
 
+         String mensaje = invitaciones.get(color);
+         if (mensaje == null) return "Error en el color";
+         else return mensaje;
+
+      } catch (Exception e) {
+         return "Ocurrió un error inesperado";
+      }
+   }
+
+} 
